@@ -1,4 +1,4 @@
-// Class Pasien
+// Class pada Pasien
 class Pasien {
     protected String nama;
     protected int umur;
@@ -42,7 +42,7 @@ class PasienVIP extends Pasien {
     }
 }
 
-// Class RumahSakit
+// Class pada RumahSakit
 class RumahSakit {
     private String nama;
     private String alamat;
