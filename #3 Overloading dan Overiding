@@ -1,0 +1,95 @@
+// Class Pasien
+class Pasien {
+    protected String nama;
+    protected int umur;
+    protected String alamat;
+
+    public Pasien(String nama, int umur, String alamat) {
+        this.nama = nama;
+        this.umur = umur;
+        this.alamat = alamat;
+    }
+
+    public void displayInfo() {
+        System.out.println("Nama: " + nama);
+        System.out.println("Umur: " + umur);
+        System.out.println("Alamat: " + alamat);
+    }
+
+    public void periksa(String diagnosa) {
+        System.out.println(nama + " sedang diperiksa dengan diagnosa: " + diagnosa);
+    }
+}
+
+// Class PasienVIP (subclass of Pasien)
+class PasienVIP extends Pasien {
+    private String kelas;
+
+    public PasienVIP(String nama, int umur, String alamat, String kelas) {
+        super(nama, umur, alamat);
+        this.kelas = kelas;
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Kelas: " + kelas);
+    }
+
+    public void periksa(String diagnosa, String tindakan) {
+        System.out.println(nama + " sedang diperiksa dengan diagnosa: " + diagnosa);
+        System.out.println("Tindakan yang dilakukan: " + tindakan);
+    }
+}
+
+// Class RumahSakit
+class RumahSakit {
+    private String nama;
+    private String alamat;
+    private Pasien[] daftarPasien;
+    private int jumlahPasien;
+
+    public RumahSakit(String nama, String alamat) {
+        this.nama = nama;
+        this.alamat = alamat;
+        daftarPasien = new Pasien[100];
+        jumlahPasien = 0;
+    }
+
+    public void tambahPasien(Pasien pasien) {
+        if (jumlahPasien < 100) {
+            daftarPasien[jumlahPasien] = pasien;
+            jumlahPasien++;
+            System.out.println("Pasien " + pasien.nama + " telah ditambahkan.");
+        } else {
+            System.out.println("Kapasitas pasien penuh.");
+        }
+    }
+
+    public void daftarPasien() {
+        System.out.println("Daftar Pasien di " + nama + ":");
+        for (int i = 0; i < jumlahPasien; i++) {
+            Pasien pasien = daftarPasien[i];
+            pasien.displayInfo();
+            System.out.println();
+        }
+    }
+}
+
+// Main class
+public class Main3 {
+    public static void main(String[] args) {
+        RumahSakit rumahSakit = new RumahSakit("RS AKU SUKA", "Jl. Raya No. 123");
+
+        Pasien pasien1 = new Pasien("Raqia Nayyara", 19, "Jl. MT Haryono No. 302 Dinoyo");
+        PasienVIP pasien2 = new PasienVIP("Taehyung", 28, "Jl. IR Soekarno No. 9", "VIP");
+
+        rumahSakit.tambahPasien(pasien1);
+        rumahSakit.tambahPasien(pasien2);
+
+        rumahSakit.daftarPasien();
+
+        pasien1.periksa("Pilek");
+        pasien2.periksa("Demam", "Pemberian obat");
+    }
+}
