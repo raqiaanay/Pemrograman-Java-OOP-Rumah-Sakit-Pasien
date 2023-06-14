@@ -1,0 +1,107 @@
+// Interface untuk Pasien
+
+import java.util.ArrayList;
+
+interface IPasien {
+    String getNama();
+
+    int getUmur();
+
+    String getAlamat();
+
+    void displayInfo();
+}
+
+// Abstract class Pasien
+abstract class Pasien implements IPasien {
+    private String nama;
+    private int umur;
+    private String alamat;
+
+    public Pasien(String nama, int umur, String alamat) {
+        this.nama = nama;
+        this.umur = umur;
+        this.alamat = alamat;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public int getUmur() {
+        return umur;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    // Metode abstract yang harus diimplementasikan oleh subclass
+    public abstract void displayInfo();
+}
+
+// Class PasienVIP yang merupakan subclass dari Pasien
+class PasienVIP extends Pasien {
+    private String jenisKeanggotaan;
+
+    public PasienVIP(String nama, int umur, String alamat, String jenisKeanggotaan) {
+        super(nama, umur, alamat);
+        this.jenisKeanggotaan = jenisKeanggotaan;
+    }
+
+    public String getJenisKeanggotaan() {
+        return jenisKeanggotaan;
+    }
+
+    public void setJenisKeanggotaan(String jenisKeanggotaan) {
+        this.jenisKeanggotaan = jenisKeanggotaan;
+    }
+
+    public void displayInfo() {
+        System.out.println("Nama: " + getNama());
+        System.out.println("Umur: " + getUmur());
+        System.out.println("Alamat: " + getAlamat());
+        System.out.println("Jenis Keanggotaan: " + jenisKeanggotaan);
+    }
+}
+
+// Class RumahSakit
+class RumahSakit<daftarPasien> {
+    private String nama;
+    private String alamat;
+    private ArrayList<IPasien> daftarPasien;
+
+    public RumahSakit(String nama, String alamat) {
+        this.nama = nama;
+        this.alamat = alamat;
+        daftarPasien = new ArrayList<>();
+    }
+
+    public void tambahPasien(IPasien pasien) {
+        daftarPasien.add(pasien);
+        System.out.println("Pasien " + pasien.getNama() + " telah ditambahkan.");
+    }
+
+    public void daftarPasien() {
+        System.out.println("Daftar Pasien di " + nama + ":");
+        for (IPasien pasien : daftarPasien) {
+            pasien.displayInfo();
+            System.out.println();
+        }
+    }
+}
+
+// Main class
+public class Main9 {
+    public static void main(String[] args) {
+        RumahSakit rumahSakit = new RumahSakit("RS AKU SUKA", "Jl. Raya No. 123");
+
+        PasienVIP pasien1 = new PasienVIP("Raqia Nayyara", 19, "Jl. MT Haryono No. 302 Dinoyo", "Gold");
+        PasienVIP pasien2 = new PasienVIP("Momo", 25, "Jl. Bekicau No. 11", "Silver");
+
+        rumahSakit.tambahPasien(pasien1);
+        rumahSakit.tambahPasien(pasien2);
+
+        rumahSakit.daftarPasien();
+    }
+}
