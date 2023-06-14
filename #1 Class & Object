@@ -1,4 +1,4 @@
-// Class Pasien
+// Class pada Pasien
 class Pasien {
     private String nama;
     private int umur;
