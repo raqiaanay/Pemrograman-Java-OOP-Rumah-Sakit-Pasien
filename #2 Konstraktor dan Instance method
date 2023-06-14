@@ -1,4 +1,4 @@
-// Class Pasien
+// Class pada Pasien
 class Pasien {
     private String nama;
     private int umur;
@@ -29,7 +29,7 @@ class Pasien {
     }
 }
 
-// Class RumahSakit
+// Class pada RumahSakit
 class RumahSakit {
     private String nama;
     private String alamat;
