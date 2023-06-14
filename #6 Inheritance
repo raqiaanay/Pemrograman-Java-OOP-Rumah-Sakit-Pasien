@@ -29,7 +29,7 @@ class Pasien {
     }
 }
 
-// Class PasienVIP (Subclass)
+// Class pada PasienVIP (Subclass)
 class PasienVIP extends Pasien {
     private String jenisKeanggotaan;
 
