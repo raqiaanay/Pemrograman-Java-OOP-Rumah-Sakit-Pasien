@@ -73,7 +73,7 @@ class RumahSakit {
     }
 }
 
-// Main class
+ // Main class
 public class Main5 {
     public static void main(String[] args) {
         RumahSakit rumahSakit = new RumahSakit("RS AKU SUKA", "Jl. Raya No. 123");
